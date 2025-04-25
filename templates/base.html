@@ -1,0 +1,34 @@
+{% load static %}
+<html>
+
+<head>
+    <title>LITRevu</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script src="{% static 'script.js' %}"></script>
+</head>
+
+<body>
+    <nav class="nav-menu">
+        <h1>LITRevu</h1>
+        <ul>
+            <li><a href="{% url 'home' %}">Accueil</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+        </ul>
+    </nav>
+    
+
+    {% if user.is_authenticated %}
+    <p>Bienvenue {{ user }} !</p>
+
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+    {% endif %}
+
+    {% block content %}{% endblock content %}
+
+</body>
+
+</html>

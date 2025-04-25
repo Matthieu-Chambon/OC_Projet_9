@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="signup-page">
+
+    <div class="signup-container">
+
+        <h2>Inscrivez-vous</h2>
+
+        <form class="signup-form" method="post">
+
+            <div class="signup-form-field">
+                {{ form.username.label }}
+                {{ form.username }}
+                {% if form.username.errors %}
+                    {{ form.username.errors }}
+                {% endif %}
+            </div>
+
+            <div class="signup-form-field">
+                {{ form.password1.label }}
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                    {{ form.password1.errors }}
+                {% endif %}
+            </div>
+
+            <div class="signup-form-field">
+                {{ form.password2.label }}
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    {{ form.password2.errors }}
+                {% endif %}
+            </div>
+
+            {% csrf_token %}
+
+            <div class="signup-form-buttons">
+                <button class="secondary-btn" type="button" id="back-to-login-btn" data-url="{% url 'login' %}">Retour</button>
+                <button class="primary-btn" type="submit">S’inscrire</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}
