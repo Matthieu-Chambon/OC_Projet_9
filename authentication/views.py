@@ -3,12 +3,18 @@ from django.contrib.auth import login
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
-from . import forms
+from authentication.forms import SignupForm
 
+from reviews.models import Ticket, Review
+
+# rendre la page accessible uniquement aux utilisateurs déconnectés
 def signup_page(request):
-    form = forms.SignupForm()
+    if request.user.is_authenticated:
+        return redirect(settings.LOGIN_REDIRECT_URL)
+    
+    form = SignupForm()
     if request.method == 'POST':
-        form = forms.SignupForm(request.POST)
+        form = SignupForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -17,4 +23,9 @@ def signup_page(request):
 
 @login_required
 def home(request):
-    return render(request, 'authentication/home.html')
+    tickets = Ticket.objects.all()
+    return render(
+        request, 
+        'authentication/home.html',
+        context={'tickets': tickets,}
+    )

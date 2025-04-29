@@ -4,4 +4,19 @@
 
     <h2>Vous êtes sur la page d'accueil</h2>
 
+    {% if user.is_authenticated %}
+        <p>Bienvenue {{ user }} !</p>
+    {% endif %}
+
+    <button class="secondary-btn" type="button" id="create-ticket-btn" data-url="{% url 'ticket-create' %}">Créer un ticket</button>
+
+    <h3>Liste des tickets</h3>
+    <ul>
+        {% for ticket in tickets %}
+            <li>
+                <a href="{% url 'ticket-details' ticket.id %}">{{ ticket.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
 {% endblock content %}

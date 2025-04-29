@@ -7,11 +7,17 @@ class SignupForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
         fields = ('username', 'password1', 'password2')
+        labels = {
+            'username': 'Nom d\'utilisateur',
+            'password1': 'Mot de passe',
+            'password2': 'Confirmer le mot de passe',
+        }
+            
         
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)        
-        self.fields['username'].label = "Nom d'utilisateur"
-        self.fields['password1'].label = "Mot de passe"
-        self.fields['password2'].label = "Confirmer le mot de passe"
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)        
+    #     self.fields['username'].label = "Nom d'utilisateur"
+    #     self.fields['password1'].label = "Mot de passe"
+    #     self.fields['password2'].label = "Confirmer le mot de passe"
         
         
