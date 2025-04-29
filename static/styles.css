@@ -5,6 +5,8 @@
     --color-blue-2: #03346E;
     --color-blue-3: #6EACDA;
     --color-beige: #E2E2B6;
+    --color-red: #7D0A0A;
+    --color-green: #5F8B4C;
 }
 
 
@@ -33,6 +35,8 @@ html body{
 
 
     background-color: var(--color-blue-2);
+
+    border-bottom: #E2E2B6 5px solid;
 }
 
 .nav-menu h1{
@@ -48,19 +52,29 @@ html body{
     display: flex;
     flex-direction: row;
     list-style-type: none;
+    align-items: center;
 }
 
 .nav-menu ul li{
     margin: 0 20px;
 }
 
-.nav-menu ul li a{
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
+.nav-menu form{
+    margin: 0;
+    padding: 0;
 }
 
-.nav-menu ul li a:hover{
+.nav-menu ul li a, .nav-menu ul li button{
+    text-decoration: none;
+    color: white;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.nav-menu ul li a:hover, .nav-menu ul li button:hover{
     color: var(--color-blue-3);
 }
 
@@ -114,19 +128,25 @@ html body{
     padding-left: 20px;
 }
 
-.signup-form-buttons, .login-form-buttons{
+.form-buttons{
     display: flex;
     flex-direction: row;
-    justify-content: right;
+    align-self: flex-end;
     align-items: center;
+
+    width: fit-content;
 }
 
-.signup-page button, .login-page button{
+.form-buttons button, .login-page button{
     border: none;
     border-radius: 5px;;
     padding: 10px 20px;
     font-size: 16px;
-    cursor: pointer;    
+    cursor: pointer;
+}
+
+.form-buttons button{
+    margin-left: 10px;
 }
 
 .primary-btn{
@@ -136,6 +156,16 @@ html body{
 
 .secondary-btn{
     background-color: var(--color-blue-2);
+    color: white;
+}
+
+.red-btn{
+    background-color: var(--color-red);
+    color: white;
+}
+
+.green-btn{
+    background-color: var(--color-green);
     color: white;
 }
 
@@ -151,8 +181,79 @@ html body{
     min-width: 30%;
 }
 
-.signup-form button:last-child{
-    margin-left: 10px;
+/* Page d'accueil */
+
+#create-ticket-btn{
+    width: fit-content;
+}
+
+/* Formulaire ticket */
+
+.ticket-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+}
+
+.ticket-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 80%;
+}
+
+.ticket-form{
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    width: 100%;
+}
+
+.ticket-form-field{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    margin-bottom: 3%;
+}
+
+.ticket-form label{
+    font-size: 20px;
+    margin-bottom: 1%;
+}
+
+.ticket-form input, .ticket-form textarea{
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.ticket-form-image{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.ticket-form-image-edit{
+    display: block;
+}
+
+.ticket-form-image-edit a{
+    color: var(--color-blue-3);
+    cursor: pointer;
+}
+
+.ticket-form #image input{
+    width: fit-content;
+    padding: 0;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 
