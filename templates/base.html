@@ -10,23 +10,21 @@
 <body>
     <nav class="nav-menu">
         <h1>LITRevu</h1>
+        {% if user.is_authenticated %}
         <ul>
-            <li><a href="{% url 'home' %}">Accueil</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'home' %}">Flux</a></li>
+            <li><a href="{% url 'home' %}">Posts</a></li>
+            <li><a href="{% url 'home' %}">Abonnements</a></li>
+            <li>
+                <form method="post" action="{% url 'logout' %}">
+                  {% csrf_token %}
+                  <button type="submit">Se déconnecter</button>
+                </form>
+              </li>
         </ul>
+        {% endif %}
     </nav>
     
-
-    {% if user.is_authenticated %}
-    <p>Bienvenue {{ user }} !</p>
-
-    <form action="{% url 'logout' %}" method="post">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
-    {% endif %}
-
     {% block content %}{% endblock content %}
 
 </body>
