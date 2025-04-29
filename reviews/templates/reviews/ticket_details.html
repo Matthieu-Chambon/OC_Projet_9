@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="ticket-page">
+    <div class="ticket-container">
+        <h2>{{ ticket.title }}</h2>
+
+        {% if ticket.image %}
+        <img src="{{ ticket.image.url }}" alt="Image du ticket" style="max-width: 300px;">
+        {% endif %}
+
+        <ul>
+            <li><strong>Créé par :</strong> {{ ticket.user.username }}</li>
+            <li><strong>Créé le :</strong> {{ ticket.time_created }}</li>
+            <li><strong>Description:</strong> {{ ticket.description }}</li>
+        </ul>
+
+        {% if ticket.user == request.user %}
+        <div class="form-buttons">
+            <button class="secondary-btn" type="button" id="edit-ticket-btn"
+                data-url="{% url 'ticket-edit' ticket.id %}">Modifier le billet</button>
+            <button class="red-btn" type="button" id="delete-ticket-btn"
+                data-url="{% url 'ticket-delete' ticket.id %}">Supprimer le billet</button>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock content %}

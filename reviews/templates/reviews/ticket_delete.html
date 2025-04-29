@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="ticket-page">
+    <div class="ticket-container">
+        <h2>Voulez-vous vraiment supprimer le billet "{{ ticket.title }}" ?</h2>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-buttons">
+                <button class="secondary-btn" type="button" id="ticket-cancel-btn" data-url="{% url 'ticket-details' ticket.id %}">Annuler</button>
+                <button class="red-btn" type="submit">Supprimer le billet</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

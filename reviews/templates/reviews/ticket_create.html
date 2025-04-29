@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="ticket-page">
+
+    <div class="ticket-container">
+
+        <h2>Création d'un nouveau ticket</h2>
+
+        <form class="ticket-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="ticket-form-field" id="title">
+                <label>{{ form.title.label }}</label>
+                {{ form.title }}
+            </div>
+            <div class="ticket-form-field" id="description">
+                <label>{{ form.description.label }}</label>
+                {{ form.description }}
+            </div>
+            <div class="ticket-form-field" id="image">
+                <label>{{ form.image.label }}</label>
+                {{ form.image }}
+            </div>
+            <div class="form-buttons">
+                <button class="green-btn" type="submit">Créer le ticket</button>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

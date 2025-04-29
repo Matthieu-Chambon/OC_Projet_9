@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="ticket-page">
+
+    <div class="ticket-container">
+
+        <h2>Création d'un nouveau ticket</h2>
+
+        <form class="ticket-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="ticket-form-field" id="title">
+                <label>{{ form.title.label }}</label>
+                {{ form.title }}
+            </div>
+            <div class="ticket-form-field" id="description">
+                <label>{{ form.description.label }}</label>
+                {{ form.description }}
+            </div>
+
+            <div class="ticket-form-field" id="image">
+                <label>{{ form.image.label }}</label>
+                <div class="ticket-form-image">
+
+                    <div class="ticket-form-image-edit">
+                        {{ form.image }}
+                    </div>
+    
+                    {% if form.image.value %}
+                        <div class="ticket-form-image-preview">
+                            <img src="{{ form.image.value.url }}" alt="Image actuelle" style="max-width: 200px;">
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+
+            <div class="form-buttons">
+                <button class="red-btn" type="button" id="ticket-cancel-btn" data-url="{% url 'ticket-details' ticket.id %}">Annuler</button>
+                <button class="primary-btn" type="submit">Enregistrer les modifications</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
