@@ -24,8 +24,19 @@ def signup_page(request):
 @login_required
 def home(request):
     tickets = Ticket.objects.all()
+    reviews = Review.objects.all()
+    
+    for ticket in tickets:
+        ticket.type = 'ticket'
+        
+    for review in reviews:
+        review.type = 'review'
+    
+    items = [*tickets , *reviews]
+    items.sort(key=lambda x: x.time_created, reverse=True)
+       
     return render(
         request, 
         'authentication/home.html',
-        context={'tickets': tickets,}
+        context={'items': items}
     )

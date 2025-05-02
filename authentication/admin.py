@@ -34,14 +34,14 @@ class TicketAdmin(admin.ModelAdmin):
     ordering = ('-time_created',)
     fieldsets = (
         (None, {
-            'fields': ('title', 'description', 'user', 'image')
+            'fields': ('title', 'description', 'user', 'image', 'answered')
         }),
     )
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
 
-    list_display = ('ticket', 'user', 'rating', 'time_created')
+    list_display = ('id', 'ticket', 'user', 'rating', 'time_created')
     search_fields = ('ticket__title', 'user__username', 'headline')
     list_filter = ('ticket', 'user')
     ordering = ('-time_created',)
