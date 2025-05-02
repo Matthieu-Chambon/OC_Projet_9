@@ -9,6 +9,12 @@
     --color-green: #5F8B4C;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 
 html body{
     height: 100%;
@@ -31,8 +37,9 @@ html body{
     align-items: center;
 
     width: 100%;
-    height: 10%;
-
+    height: 8vh;
+    min-height: 8vh;
+    
 
     background-color: var(--color-blue-2);
 
@@ -86,6 +93,8 @@ html body{
     justify-content: center;
     align-items: center;
 
+    justify-self: center;
+
     width: 100%;
     height: 100%;
 }
@@ -128,25 +137,38 @@ html body{
     padding-left: 20px;
 }
 
-.form-buttons{
+/* Boutons */
+
+button{
+    width: fit-content;
+    
+    border: none;
+    border-radius: 5px;
+
+    padding: 10px 20px;
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.form-buttons, .group-buttons{
     display: flex;
     flex-direction: row;
-    align-self: flex-end;
     align-items: center;
 
     width: fit-content;
 }
 
-.form-buttons button, .login-page button{
-    border: none;
-    border-radius: 5px;;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+.form-buttons{
+    align-self: flex-end;
 }
 
-.form-buttons button{
+.form-buttons button, .group-buttons button{
     margin-left: 10px;
+}
+
+.form-buttons button:first-child, .group-buttons button:first-child{
+    margin-left: 0;
 }
 
 .primary-btn{
@@ -181,15 +203,9 @@ html body{
     min-width: 30%;
 }
 
-/* Page d'accueil */
+/* Toutes les pages */
 
-#create-ticket-btn{
-    width: fit-content;
-}
-
-/* Formulaire ticket */
-
-.ticket-page{
+.main-page{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -198,13 +214,18 @@ html body{
     width: 100%;
 }
 
-.ticket-container{
+.page-content{
     display: flex;
     flex-direction: column;
     align-items: center;
 
     width: 80%;
+
+    margin: 1vw 0 1vw 0;
+    padding: 0;
 }
+
+/* Formulaire ticket */
 
 .ticket-form{
     display: flex;
@@ -221,13 +242,15 @@ html body{
 
     width: 100%;
 
-    margin-bottom: 3%;
+    margin-bottom: 2vw;
 }
 
 .ticket-form label{
     font-size: 20px;
     margin-bottom: 1%;
 }
+
+/* Formulaire ticket > images */
 
 .ticket-form input, .ticket-form textarea{
     padding: 10px;
@@ -256,4 +279,48 @@ html body{
     cursor: pointer;
 }
 
+/* Formulaire review */
 
+.ticket-container, .review-container{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    width: 100%;
+
+    border : 4px solid var(--color-beige);
+    border-radius: 15px;
+    padding: 1vw;
+    margin-bottom: 1vw;
+  
+}
+
+.ticket-container{
+    flex-direction: row;
+}
+
+.review-container{
+    flex-direction: column;
+}
+
+.ticket-container img{
+    max-width: 20%;
+    height: auto;
+    object-fit: contain;
+    margin-left: 1vw;
+
+    border-radius: 1vw;
+    border-color: white;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.rating-labels{
+    margin: 0;
+
+    
+}
+
+.rating-labels label{
+    margin-right: 1vw;
+}
