@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="main-page">
+
+    <div class="page-content">
+
+        <h2>Création d'un nouveau ticket et d'une critique</h2>
+
+        <form class="ticket-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <section class="ticket-form-field" id="title">
+                <label>{{ form.ticket.title.label }}</label>
+                {{ form.ticket.title }}
+            </section>
+            <section class="ticket-form-field" id="description">
+                <label>{{ form.ticket.description.label }}</label>
+                {{ form.ticket.description }}
+            </section>
+            <section class="ticket-form-field" id="image">
+                <label>{{ form.ticket.image.label }}</label>
+                {{ form.ticket.image }}
+            </section>
+            
+            <section class="ticket-form-field" id="headline">
+                <label>{{ form.review.headline.label }}</label>
+                {{ form.review.headline }}
+            </section>
+
+            <section class="ticket-form-field" id="rating">
+                <label>{{ form.review.rating.label }}</label>
+
+                <div class="rating-labels">
+                    <input type="radio" id="rating-0" name="rating" value=0>
+                    <label for="rating-0">0</label>
+                    <input type="radio" id="rating-1" name="rating" value=1>
+                    <label for="rating-1">1</label>
+                    <input type="radio" id="rating-2" name="rating" value=2>
+                    <label for="rating-2">2</label>
+                    <input type="radio" id="rating-3" name="rating" value=3>
+                    <label for="rating-3">3</label>
+                    <input type="radio" id="rating-4" name="rating" value=4>
+                    <label for="rating-4">4</label>
+                    <input type="radio" id="rating-5" name="rating" value=5>
+                    <label for="rating-5">5</label>
+                </div>
+                {% if form.review.rating.errors %}
+                    {{ form.review.rating.errors }}
+                {% endif %}
+            </section>
+
+            <section class="ticket-form-field" id="body">
+                <label>{{ form.review.body.label }}</label>
+                {{ form.review.body }}
+            </section>
+
+            <section class="form-buttons">
+                <button class="green-btn" type="submit">Créer une critique</button>
+            </section>
+        </form>
+        
+    </div>
+</div>
+
+{% endblock content %}

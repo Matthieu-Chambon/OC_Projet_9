@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="main-page">
+
+    <div class="page-content">
+        <h2>Mes posts</h2>
+        
+        {% for item in items %}
+
+            {% if item.type == "ticket" %}
+
+                {% include 'reviews/ticket.html' with ticket=item page="my_posts" %}
+
+            {% elif item.type == "review" %}
+            
+            <div class="review-container">
+                {% if item.user == user %}
+                    <p><strong>Vous</strong> avez publié une critique</p>
+                {% else %}
+                    <p><strong>{{ item.user.username }}</strong> a publié une critique</p>
+                {% endif %}
+                <p>Créé le : <strong>{{ item.time_created }}</strong></p>
+                <p><strong>{{ item.headline }}</strong> - note {{ item.rating }}/5</p>
+                {% include 'reviews/ticket.html' with ticket=item.ticket page="my_posts" %}
+
+                <div class="group-buttons">
+                    {% if item.user == user %}
+                        <button class="secondary-btn" type="button" data-url="{% url 'review-edit' item.id %}">Modifier la critique</button>
+                        <button class="red-btn" type="button" data-url="{% url 'review-delete' item.id %}">Supprimer la critique</button>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% endif %}
+
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock content %}

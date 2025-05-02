@@ -1,0 +1,27 @@
+<div class="ticket-container">
+    <div class="ticket-content">
+        {% if ticket.user == user %}
+            <p><strong>Vous</strong> avez demandé une critique</p>
+        {% else %}
+            <p><strong>{{ ticket.user.username }}</strong> a demandé une critique</p>
+        {% endif %}
+        <p>Créé le : <strong>{{ ticket.time_created }}</strong></p>
+        <p><strong>{{ ticket.title }}</strong></p>
+        <p>{{ ticket.description|linebreaks }}</p>
+
+        <div class="form-buttons">
+            {% if not ticket.answered and page == "home" %}
+                <button class="secondary-btn" type="button" data-url="{% url 'review-create' ticket.id %}">Répondre</button>
+            {% endif %}
+            {% if page == "my_posts" and ticket.user == user %}
+                <button class="secondary-btn" type="button" data-url="{% url 'ticket-edit' ticket.id %}">Modifier le billet</button>
+                <button class="red-btn" type="button" data-url="{% url 'ticket-delete' ticket.id %}">Supprimer le billet</button>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if ticket.image %}
+    <img src="{{ ticket.image.url }}" alt="Image du ticket">
+    {% endif %}
+
+</div>

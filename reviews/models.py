@@ -8,14 +8,14 @@ class Ticket(models.Model):
     user = models.ForeignKey('authentication.User', on_delete=models.CASCADE)
     image = models.ImageField(blank=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
-
+    answered = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
 
 class Review(models.Model):
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE, related_name='reviews')
-    rating = models.PositiveSmallIntegerField(max_length=1024, validators=[
+    rating = models.PositiveSmallIntegerField(validators=[
         MinValueValidator(0),
         MaxValueValidator(5)
     ])
@@ -26,3 +26,13 @@ class Review(models.Model):
 
     def __str__(self):
         return f'{self.ticket.title} - {self.user.username}'
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.ticket.answered = True
+        self.ticket.save()
+        
+    def delete(self, *args, **kwargs):
+        self.ticket.answered = False
+        self.ticket.save()
+        super().delete(*args, **kwargs)

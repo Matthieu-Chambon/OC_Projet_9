@@ -2,8 +2,8 @@
 
 {% block content %}
 
-<div class="ticket-page">
-    <div class="ticket-container">
+<div class="main-page">
+    <div class="page-content">
         <h2>{{ ticket.title }}</h2>
 
         {% if ticket.image %}
@@ -18,10 +18,8 @@
 
         {% if ticket.user == request.user %}
         <div class="form-buttons">
-            <button class="secondary-btn" type="button" id="edit-ticket-btn"
-                data-url="{% url 'ticket-edit' ticket.id %}">Modifier le billet</button>
-            <button class="red-btn" type="button" id="delete-ticket-btn"
-                data-url="{% url 'ticket-delete' ticket.id %}">Supprimer le billet</button>
+            <button class="secondary-btn" type="button" data-url="{% url 'ticket-edit' ticket.id %}">Modifier le billet</button>
+            <button class="red-btn" type="button" data-url="{% url 'ticket-delete' ticket.id %}">Supprimer le billet</button>
         </div>
         {% endif %}
 

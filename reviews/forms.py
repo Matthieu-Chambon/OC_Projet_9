@@ -15,3 +15,37 @@ class TicketForm(forms.ModelForm):
             'description': 'Description',
             'image': 'Image',
         }
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['rating', 'headline', 'body']
+        widgets = {
+            'body': forms.Textarea(attrs={'rows': 20}),
+        }
+        labels = {
+            'rating': 'Note',
+            'headline': 'Titre',
+            'body': 'Commentaire',
+        }
+        
+class TicketAndReviewForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.ticket = TicketForm(*args, **kwargs)
+        self.review = ReviewForm(*args, **kwargs)
+        
+    def is_valid(self):
+        return self.ticket.is_valid() and self.review.is_valid()
+    
+    def save(self, user):
+        ticket = self.ticket.save(commit=False)
+        ticket.user = user
+        ticket.save()
+        
+        review = self.review.save(commit=False)
+        review.ticket = ticket
+        review.user = user
+        review.save()
+        
+        return ticket, review

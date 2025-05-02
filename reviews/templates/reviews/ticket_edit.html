@@ -2,9 +2,9 @@
 
 {% block content %}
 
-<div class="ticket-page">
+<div class="main-page">
 
-    <div class="ticket-container">
+    <div class="page-content">
 
         <h2>Création d'un nouveau ticket</h2>
 
@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-buttons">
-                <button class="red-btn" type="button" id="ticket-cancel-btn" data-url="{% url 'ticket-details' ticket.id %}">Annuler</button>
+                <button class="red-btn" type="button" data-url="{% url 'ticket-details' ticket.id %}">Annuler</button>
                 <button class="primary-btn" type="submit">Enregistrer les modifications</button>
             </div>
         </form>
