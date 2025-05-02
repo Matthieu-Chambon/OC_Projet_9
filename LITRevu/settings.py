@@ -134,3 +134,5 @@ LOGOUT_REDIRECT_URL = LOGIN_URL
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR.joinpath('media/')
+
+SESSION_COOKIE_NAME = 'litrevu_session'
