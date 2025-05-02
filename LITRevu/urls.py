@@ -33,10 +33,18 @@ urlpatterns = [
     path('signup/', authentication.views.signup_page, name='signup'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('home/', authentication.views.home, name='home'),
+    path('my-posts/', reviews.views.my_posts, name='my-posts'),
+    
     path('tickets/add/', reviews.views.ticket_create, name='ticket-create'),
     path('tickets/<int:ticket_id>/', reviews.views.ticket_details, name='ticket-details'),
     path('tickets/<int:ticket_id>/edit/', reviews.views.ticket_edit, name='ticket-edit'),
     path('tickets/<int:ticket_id>/delete/', reviews.views.ticket_delete, name='ticket-delete'),
+    
+    path('tickets/<int:ticket_id>/create-review/', reviews.views.review_create, name='review-create'),
+    path('reviews/<int:review_id>/edit/', reviews.views.review_edit, name='review-edit'),
+    path('reviews/<int:review_id>/delete/', reviews.views.review_delete, name='review-delete'),
+    
+    path('create-ticket-and-review/', reviews.views.create_ticket_and_review, name='create-ticket-and-review'),
 ]
 
 if settings.DEBUG:
