@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 
 <div class="main-page">
@@ -26,7 +28,19 @@
                     <p><strong>{{ item.user.username }}</strong> a publié une critique</p>
                 {% endif %}
                 <p>Créé le : <strong>{{ item.time_created }}</strong></p>
-                <p><strong>{{ item.headline }}</strong> - note {{ item.rating }}/5</p>
+                <section class="review-headline-rating">
+                    <p><strong>{{ item.headline }}</strong> - </p>
+                        <div class="review-stars">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= item.rating %}
+                                    <img src="{% static 'images/full_star.png' %}" alt="★" class="star-icon">
+                                {% else %}
+                                    <img src="{% static 'images/empty_star.png' %}" alt="☆" class="star-icon">
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                </section>
+                {{ item.body|linebreaks }}
                 {% include 'reviews/ticket.html' with ticket=item.ticket %}
             </div>
 

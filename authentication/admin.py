@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import User
-from reviews.models import Ticket, Review
+from authentication.models import User, UserFollows
+
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
@@ -25,28 +25,16 @@ class UserAdmin(admin.ModelAdmin):
         }),
     )
 
-@admin.register(Ticket)
-class TicketAdmin(admin.ModelAdmin):
 
-    list_display = ('title', 'user', 'time_created')
-    search_fields = ('title', 'description')
-    list_filter = ('user',)
-    ordering = ('-time_created',)
+@admin.register(UserFollows)
+class UserFollowsAdmin(admin.ModelAdmin):
+
+    list_display = ('user', 'followed_user')
+    search_fields = ('user__username', 'followed_user__username')
+    list_filter = ('user', 'followed_user')
+    ordering = ('user', 'followed_user')
     fieldsets = (
         (None, {
-            'fields': ('title', 'description', 'user', 'image', 'answered')
-        }),
-    )
-
-@admin.register(Review)
-class ReviewAdmin(admin.ModelAdmin):
-
-    list_display = ('id', 'ticket', 'user', 'rating', 'time_created')
-    search_fields = ('ticket__title', 'user__username', 'headline')
-    list_filter = ('ticket', 'user')
-    ordering = ('-time_created',)
-    fieldsets = (
-        (None, {
-            'fields': ('ticket', 'user', 'rating', 'headline', 'body')
+            'fields': ('user', 'followed_user')
         }),
     )
