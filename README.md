@@ -12,6 +12,8 @@ Chaque utilisateur peut :
 
 🔧 Le projet respecte les bonnes pratiques du framework **Django** et les recommandations **PEP8** pour garantir une qualité de code professionnelle.
 
+---
+
 ## 🖥️ Fonctionnalités
 
 ### 🔓 Utilisateur non connecté
@@ -43,6 +45,8 @@ Chaque utilisateur peut :
 > - 📋 **Lister** les utilisateurs suivis
 > - ❌ **Se désabonner** d’un utilisateur
 
+---
+
 ## 📥 Installation et exécution
 
 ### 1️⃣ Cloner le projet
@@ -52,7 +56,7 @@ cd "chemin/vers/dossier"
 git clone https://github.com/Matthieu-Chambon/OC_Projet_9
 cd OC_Projet_9
 pip install -r requirements.txt
-````
+```
 
 ### 2️⃣ Lancer le serveur
 
