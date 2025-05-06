@@ -18,32 +18,32 @@ Chaque utilisateur peut :
 
 ### 🔓 Utilisateur non connecté
 
-> - 📝 **Inscription** à la plateforme
-> - 🔐 **Connexion** à un compte existant
+- 📝 **Inscription** à la plateforme
+- 🔐 **Connexion** à un compte existant
 
 ### 🔐 Utilisateur connecté
  
-> #### 📰 Un flux personnalisé affiche
-> 
-> - 🔁 Ses propres **billets** et **critiques**
-> - 👤 Les billets et critiques des **utilisateurs suivis**
-> - 💬 Les critiques des autres utilisateurs en **réponse à ses billets**
+- 📰 Un flux personnalisé affiche
 
-> #### ✏️ Création
->
-> - 🧾 **Billet** (demande de critique)
-> - 🗣️ **Critique** liée à un billet existant
-> - 🚀 **Billet + critique** en une seule étape
+    - 🔁 Ses propres **billets** et **critiques**
+    - 👤 Les billets et critiques des **utilisateurs suivis**
+    - 💬 Les critiques des autres utilisateurs en **réponse à ses billets**
 
-> #### ⚙️ Gestion de contenu
-> 
-> - 🗃️ **Modifier et supprimer** ses propres billets et critiques
+- ✏️ Création
 
-> #### 👥 Gestion des abonnements
-> 
-> - 🔍 **Suivre** un utilisateur via son nom d'utilisateur
-> - 📋 **Lister** les utilisateurs suivis
-> - ❌ **Se désabonner** d’un utilisateur
+    - 🧾 **Billet** (demande de critique)
+    - 🗣️ **Critique** liée à un billet existant
+    - 🚀 **Billet + critique** en une seule étape
+
+- ⚙️ Gestion de contenu
+
+    - 🗃️ **Modifier et supprimer** ses propres billets et critiques
+
+- 👥 Gestion des abonnements
+
+    - 🔍 **Suivre** un utilisateur via son nom d'utilisateur
+    - 📋 **Lister** les utilisateurs suivis
+    - ❌ **Se désabonner** d’un utilisateur
 
 ---
 
