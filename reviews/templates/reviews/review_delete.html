@@ -9,7 +9,7 @@
         <form action="" method="post">
             {% csrf_token %}
             <div class="form-buttons">
-                <button class="secondary-btn" type="button" data-url="{% url 'home' %}">Annuler</button>
+                <button class="secondary-btn" type="button" onclick="window.history.back()">Annuler</button>
                 <button class="red-btn" type="submit">Supprimer la critique</button>
             </div>
         </form>

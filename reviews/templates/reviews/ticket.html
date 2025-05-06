@@ -7,7 +7,7 @@
         {% endif %}
         <p>Créé le : <strong>{{ ticket.time_created }}</strong></p>
         <p><strong>{{ ticket.title }}</strong></p>
-        <p>{{ ticket.description|linebreaks }}</p>
+        {{ ticket.description|linebreaks }}
 
         <div class="form-buttons">
             {% if not ticket.answered and page == "home" %}

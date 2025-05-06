@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+import os
 
 
 class Ticket(models.Model):
@@ -12,6 +13,15 @@ class Ticket(models.Model):
 
     def __str__(self):
         return self.title
+
+    def delete(self, *args, **kwargs):
+        if self.image:
+            try:
+                os.remove(self.image.path)
+            except FileNotFoundError:
+                pass
+        super().delete(*args, **kwargs)
+
 
 class Review(models.Model):
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE, related_name='reviews')
@@ -26,12 +36,12 @@ class Review(models.Model):
 
     def __str__(self):
         return f'{self.ticket.title} - {self.user.username}'
-    
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.ticket.answered = True
         self.ticket.save()
-        
+
     def delete(self, *args, **kwargs):
         self.ticket.answered = False
         self.ticket.save()

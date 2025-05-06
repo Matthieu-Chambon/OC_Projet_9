@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="main-page">
+    <div class="page-content">
+
+        <h2>Suivre un utilisateur</h2>
+
+        <form method="post" class="subscribe-form">
+            {% csrf_token %}
+            <section class="search-field">
+                <input type="text" name="followed_user" placeholder="Rechercher un utilisateur...">
+                <button type="submit" name="action" value="subscribe" class="primary-btn">S'abonner</button>
+            </section>
+                {% if subscribe_form.followed_user.errors %}
+                    <div class="error">{{ subscribe_form.followed_user.errors }}</div>
+                {% endif %}
+            
+        </form>
+
+        <h2>Abonnements</h2>
+
+        {% if not users_followed %}
+            <p>Vous n'êtes abonné à aucun utilisateur.</p>
+        {% endif %}
+        {% if users_followed %}
+            <p>Vous êtes abonné à {{ users_followed|length }} utilisateur(s).</p>
+        {% endif %}
+
+        {% for user_followed in users_followed %}
+            <form method="post" class="unsubscribe-form">
+                {% csrf_token %}
+                <section class="unsubscribe-field">
+                    <p>{{ user_followed.username }}</p>
+                    <input type="hidden" name="unfollow_user_id" value="{{ user_followed.id }}">
+                    <button type="submit" name="action" value="unsubscribe" class="red-btn">Se désabonner</button>
+                </section>
+            </form>
+        {% endfor %}
+
+        <h2>Abonnés</h2>
+
+        {% if not followers %}
+            <p>Vous n'avez aucun abonné.</p>
+        {% endif %}
+        {% if followers %}
+            <p>Vous avez {{ followers|length }} abonné(s).</p>
+        {% endif %}
+
+        {% for follower in followers %}
+            <div class="follower-field">
+                <p>{{ follower.username }}</p>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock content %}
