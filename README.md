@@ -52,29 +52,28 @@ Chaque utilisateur peut :
 ### 1️⃣ Cloner le projet
 
 ```sh
-cd "chemin/vers/dossier"
+cd "chemin/vers/dossier/souhaité/"
 git clone https://github.com/Matthieu-Chambon/OC_Projet_9
+```
+
+### 2️⃣ Installer le projet
+
+```sh
 cd OC_Projet_9
+python -m venv env
+env\Scripts\activate  # Sous Windows
+source env/bin/activate  # Sous Mac ou Linux
 pip install -r requirements.txt
+python manage.py migrate
 ```
 
-### 2️⃣ Lancer le serveur
-
-#### ▶️ Sous Windows
+### 3️⃣ Lancer le serveur
 
 ```sh
-env\Scripts\activate
 python manage.py runserver
 ```
 
-#### ▶️ Sous macOS/Linux
-
-```sh
-source env/bin/activate
-python manage.py runserver
-```
-
-### 3️⃣ Accéder à l’application
+### 4️⃣ Accéder à l’application
 
 [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
