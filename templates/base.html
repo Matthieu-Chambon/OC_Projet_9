@@ -11,10 +11,11 @@
     <nav class="nav-menu">
         <h1>LITRevu</h1>
         {% if user.is_authenticated %}
+        <p>Bonjour, <strong>{{ user.username }}</strong> !</p>
         <ul>
             <li><a href="{% url 'home' %}">Flux</a></li>
             <li><a href="{% url 'my-posts' %}">Mes posts</a></li>
-            <li><a href="{% url 'home' %}">Abonnements</a></li>
+            <li><a href="{% url 'subscriptions' %}">Abonnements</a></li>
             <li>
                 <form method="post" action="{% url 'logout' %}">
                   {% csrf_token %}
