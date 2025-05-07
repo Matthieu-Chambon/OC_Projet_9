@@ -91,7 +91,7 @@ python manage.py runserver
 
 ## ✅ Conformité
 
-* ✅ Respect des bonnes pratiques Django
+* ✅ Respect des bonnes pratiques **Django**
 * ✅ Respect des normes **PEP8**
-* ✅ Fichiers statiques organisés
-* ✅ Base de données livrée (SQLite)
+* ✅ Respect bonnes pratiques référentiel **WCAG**
+* ✅ Base de données livrée (**db.sqlite3**)
