@@ -1,6 +1,4 @@
 env
 __pycache__
-media
-db.sqlite3
 .flake8
 flake-report
