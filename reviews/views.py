@@ -138,7 +138,7 @@ def ticket_delete(request, ticket_id):
 
     if request.method == 'POST':
         ticket.delete()
-        return redirect('home')
+        return redirect('my-posts')
 
     return render(request, 'reviews/ticket_delete.html', {'ticket': ticket})
 
@@ -158,7 +158,7 @@ def review_create(request, ticket_id):
             review.ticket = ticket
             review.user = request.user
             review.save()
-            return redirect('home')
+            return redirect('my-posts')
     else:
         form = ReviewForm()
     return render(request, 'reviews/review_create.html', {'form': form, 'ticket': ticket})
@@ -170,14 +170,14 @@ def review_edit(request, review_id):
     ticket = Ticket.objects.get(id=review.ticket.id)
 
     if request.user != review.user:
-        return redirect('home')
+        return redirect('my-posts')
 
     if request.method == 'POST':
         form = ReviewForm(request.POST, instance=review)
 
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('my-posts')
     else:
         form = ReviewForm(instance=review)
 
@@ -189,11 +189,11 @@ def review_delete(request, review_id):
     review = Review.objects.get(id=review_id)
 
     if request.user != review.user:
-        return redirect('home')
+        return redirect('my-posts')
 
     if request.method == 'POST':
         review.delete()
-        return redirect('home', ticket_id=review.ticket.id)
+        return redirect('my-posts')
 
     return render(request, 'reviews/review_delete.html', {'review': review})
 
@@ -208,7 +208,7 @@ def create_ticket_and_review(request):
         if form.is_valid():
             print("Form is valid")
             ticket, review = form.save(user=request.user)
-            return redirect('home')
+            return redirect('my-posts')
     else:
         form = TicketAndReviewForm()
 
