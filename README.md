@@ -77,6 +77,10 @@ python manage.py runserver
 
 [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
+### 5️⃣ Utiliser les données fictives
+
+Le projet étant **fictif**, des comptes utilisateurs préconfigurés sont fournis pour faciliter les tests. Vous pouvez consulter les identifiants de connexion dans le fichier `credentials.txt` situé à la racine du projet.
+
 ---
 
 ## 🛠️ Technologies utilisées
@@ -92,6 +96,6 @@ python manage.py runserver
 ## ✅ Conformité
 
 * ✅ Respect des bonnes pratiques **Django**
+* ✅ Respect des bonnes pratiques référentiel **WCAG**
 * ✅ Respect des normes **PEP8**
-* ✅ Respect bonnes pratiques référentiel **WCAG**
 * ✅ Base de données livrée (**db.sqlite3**)
