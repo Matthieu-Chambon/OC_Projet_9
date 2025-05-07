@@ -64,7 +64,6 @@ python -m venv env
 env\Scripts\activate  # Sous Windows
 source env/bin/activate  # Sous Mac ou Linux
 pip install -r requirements.txt
-python manage.py migrate
 ```
 
 ### 3️⃣ Lancer le serveur
