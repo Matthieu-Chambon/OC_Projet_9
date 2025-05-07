@@ -13,10 +13,35 @@ class SignupForm(UserCreationForm):
             'password1': 'Mot de passe',
             'password2': 'Confirmer le mot de passe',
         }
+        widgets = {
+            'username': forms.TextInput(attrs={
+                'aria-label': 'Nom d\'utilisateur',
+                'aria-required': 'true',
+                'required': 'required',
+            }),
+            'password1': forms.PasswordInput(attrs={
+                'aria-label': 'Mot de passe',
+                'aria-required': 'true',
+                'required': 'required',
+            }),
+            'password2': forms.PasswordInput(attrs={
+                'aria-label': 'Confirmer le mot de passe',
+                'aria-required': 'true',
+                'required': 'required',
+            }),
+        }
 
 
 class SubscribeForm(forms.ModelForm):
-    followed_user = forms.CharField(max_length=150)
+    followed_user = forms.CharField(
+        max_length=150,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Rechercher un utilisateur...',
+            'aria-label': 'Nom d\'utilisateur à suivre',
+            'aria-required': 'true',
+            'required': 'required',
+        }),
+    )
 
     class Meta:
         model = UserFollows

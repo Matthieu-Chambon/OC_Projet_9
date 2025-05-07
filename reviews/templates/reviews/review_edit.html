@@ -13,12 +13,12 @@
             {% csrf_token %}
 
             <section class="ticket-form-field" id="headline">
-                <label>{{ form.headline.label }}</label>
+                <label for="{{ form.headline.id_for_label }}">{{ form.headline.label }}</label>
                 {{ form.headline }}
             </section>
 
             <section class="ticket-form-field" id="rating">
-                <label>{{ form.rating.label }}</label>
+                <label for="{{ form.rating.id_for_label }}">{{ form.rating.label }}</label>
 
                 <div class="rating-labels">
                     <input type="radio" id="rating-0" name="rating" value=0 {% if form.rating.value == 0 %}checked{% endif %}>
@@ -40,7 +40,7 @@
             </section>
 
             <section class="ticket-form-field" id="body">
-                <label>{{ form.body.label }}</label>
+                <label for="{{ form.body.id_for_label }}">{{ form.body.label }}</label>
                 {{ form.body }}
             </section>
 

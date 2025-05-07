@@ -11,7 +11,7 @@
         <form class="signup-form" method="post">
 
             <div class="signup-form-field">
-                {{ form.username.label }}
+                <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
                 {{ form.username }}
                 {% if form.username.errors %}
                     {{ form.username.errors }}
@@ -19,7 +19,7 @@
             </div>
 
             <div class="signup-form-field">
-                {{ form.password1.label }}
+                <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
                 {{ form.password1 }}
                 {% if form.password1.errors %}
                     {{ form.password1.errors }}
@@ -27,7 +27,7 @@
             </div>
 
             <div class="signup-form-field">
-                {{ form.password2.label }}
+                <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
                 {{ form.password2 }}
                 {% if form.password2.errors %}
                     {{ form.password2.errors }}

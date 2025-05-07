@@ -11,25 +11,25 @@
         <form class="ticket-form" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <section class="ticket-form-field" id="title">
-                <label>{{ form.ticket.title.label }}</label>
+                <label for="{{ form.ticket.title.id_for_label }}">{{ form.ticket.title.label }}</label>
                 {{ form.ticket.title }}
             </section>
             <section class="ticket-form-field" id="description">
-                <label>{{ form.ticket.description.label }}</label>
+                <label for="{{ form.ticket.description.id_for_label }}">{{ form.ticket.description.label }}</label>
                 {{ form.ticket.description }}
             </section>
             <section class="ticket-form-field" id="image">
-                <label>{{ form.ticket.image.label }}</label>
+                <label for="{{ form.ticket.image.id_for_label }}">{{ form.ticket.image.label }}</label>
                 {{ form.ticket.image }}
             </section>
             
             <section class="ticket-form-field" id="headline">
-                <label>{{ form.review.headline.label }}</label>
+                <label for="{{ form.review.headline.id_for_label }}">{{ form.review.headline.label }}</label>
                 {{ form.review.headline }}
             </section>
 
             <section class="ticket-form-field" id="rating">
-                <label>{{ form.review.rating.label }}</label>
+                <label for="{{ form.review.rating.id_for_label }}">{{ form.review.rating.label }}</label>
 
                 <div class="rating-labels">
                     <input type="radio" id="rating-0" name="rating" value=0>
@@ -51,7 +51,7 @@
             </section>
 
             <section class="ticket-form-field" id="body">
-                <label>{{ form.review.body.label }}</label>
+                <label for="{{ form.review.body.id_for_label }}">{{ form.review.body.label }}</label>
                 {{ form.review.body }}
             </section>
 

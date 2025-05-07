@@ -10,13 +10,12 @@
         <form method="post" class="subscribe-form">
             {% csrf_token %}
             <section class="search-field">
-                <input type="text" name="followed_user" placeholder="Rechercher un utilisateur...">
+                {{ subscribe_form.followed_user }}
                 <button type="submit" name="action" value="subscribe" class="primary-btn">S'abonner</button>
             </section>
-                {% if subscribe_form.followed_user.errors %}
-                    <div class="error">{{ subscribe_form.followed_user.errors }}</div>
-                {% endif %}
-            
+            {% if subscribe_form.followed_user.errors %}
+                <div class="error">{{ subscribe_form.followed_user.errors }}</div>
+            {% endif %}
         </form>
 
         <h2>Abonnements</h2>

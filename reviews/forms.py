@@ -8,7 +8,21 @@ class TicketForm(forms.ModelForm):
         model = Ticket
         fields = ['title', 'description', 'image']
         widgets = {
-            'description': forms.Textarea(attrs={'rows': 20}),
+            'title': forms.TextInput(attrs={
+                'aria-label': 'Titre du billet',
+                'aria-required': 'true',
+                'required': 'required',
+            }),
+            'description': forms.Textarea(attrs={
+                'rows': 20,
+                'aria-label': 'Description du billet',
+                'aria-required': 'true',
+                'required': 'required',
+            }),
+            'image': forms.ClearableFileInput(attrs={
+                'aria-label': 'Image du billet',
+                'aria-required': 'false',
+            }),
         }
         labels = {
             'title': 'Titre',
@@ -20,9 +34,24 @@ class TicketForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ['rating', 'headline', 'body']
+        fields = ['headline', 'rating', 'body']
         widgets = {
-            'body': forms.Textarea(attrs={'rows': 20}),
+            'headline': forms.TextInput(attrs={
+                'aria-label': 'Titre de la critique',
+                'aria-required': 'true',
+                'required': 'required',
+            }),
+            'rating': forms.Select(attrs={
+                'aria-label': 'Note de la critique',
+                'aria-required': 'true',
+                'required': 'required',
+            }),
+            'body': forms.Textarea(attrs={
+                'rows': 20,
+                'aria-label': 'Commentaire de la critique',
+                'aria-required': 'true',
+                'required': 'required',
+            }),
         }
         labels = {
             'rating': 'Note',

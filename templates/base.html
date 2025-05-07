@@ -1,5 +1,5 @@
 {% load static %}
-<html>
+<html lang="fr">
 
 <head>
     <title>LITRevu</title>
@@ -16,12 +16,12 @@
             <li><a href="{% url 'home' %}">Flux</a></li>
             <li><a href="{% url 'my-posts' %}">Mes posts</a></li>
             <li><a href="{% url 'subscriptions' %}">Abonnements</a></li>
-            <li>
-                <form method="post" action="{% url 'logout' %}">
-                  {% csrf_token %}
-                  <button type="submit">Se déconnecter</button>
-                </form>
-              </li>
+
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Se déconnecter</button>
+            </form>
+
         </ul>
         {% endif %}
     </nav>

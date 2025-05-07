@@ -57,6 +57,7 @@ def subscriptions(request):
                             followed_user=followed_user
                         )
                         user_follows.save()
+                        subscribe_form = SubscribeForm()
 
                 else:
                     subscribe_form.add_error('followed_user', "Vous ne pouvez pas vous abonner à vous-même.")
@@ -114,14 +115,14 @@ def ticket_edit(request, ticket_id):
     ticket = Ticket.objects.get(id=ticket_id)
 
     if request.user != ticket.user:
-        return redirect('ticket-details', ticket_id=ticket.id)
+        return redirect('home')
 
     if request.method == 'POST':
         form = TicketForm(request.POST, request.FILES, instance=ticket)
 
         if form.is_valid():
             form.save()
-            return redirect('ticket-details', ticket_id=ticket.id)
+            return redirect('home')
     else:
         form = TicketForm(instance=ticket)
 
@@ -133,7 +134,7 @@ def ticket_delete(request, ticket_id):
     ticket = Ticket.objects.get(id=ticket_id)
 
     if request.user != ticket.user:
-        return redirect('ticket-details', ticket_id=ticket.id)
+        return redirect('home')
 
     if request.method == 'POST':
         ticket.delete()
@@ -157,7 +158,7 @@ def review_create(request, ticket_id):
             review.ticket = ticket
             review.user = request.user
             review.save()
-            return redirect('ticket-details', ticket_id=ticket.id)
+            return redirect('home')
     else:
         form = ReviewForm()
     return render(request, 'reviews/review_create.html', {'form': form, 'ticket': ticket})
@@ -192,7 +193,7 @@ def review_delete(request, review_id):
 
     if request.method == 'POST':
         review.delete()
-        return redirect('ticket-details', ticket_id=review.ticket.id)
+        return redirect('home', ticket_id=review.ticket.id)
 
     return render(request, 'reviews/review_delete.html', {'review': review})
 
@@ -207,7 +208,7 @@ def create_ticket_and_review(request):
         if form.is_valid():
             print("Form is valid")
             ticket, review = form.save(user=request.user)
-            return redirect('ticket-details', ticket_id=ticket.id)
+            return redirect('home')
     else:
         form = TicketAndReviewForm()
 

@@ -15,7 +15,7 @@
         <h2>Connectez-vous</h2>
         <form class="login-form" method="post">
             <div class="login-form-field">
-                {{ form.username.label }}
+                <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
                 {{ form.username }}
                 {% if form.username.errors %}
                     {{ form.username.errors }}
@@ -23,7 +23,7 @@
             </div>
 
             <div class="login-form-field">
-                {{ form.password.label }}
+                <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
                 {{ form.password }}
                 {% if form.password.errors %}
                     {{ form.password.errors }}
