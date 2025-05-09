@@ -33,7 +33,7 @@ urlpatterns = [
     path('signup/', authentication.views.signup_page, name='signup'),
     path('logout/', LogoutView.as_view(), name='logout'),
 
-    path('home/', authentication.views.home, name='home'),
+    path('home/', reviews.views.home, name='home'),
     path('my-posts/', reviews.views.my_posts, name='my-posts'),
     path('subscribtions/', reviews.views.subscriptions, name='subscriptions'),
 

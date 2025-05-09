@@ -7,6 +7,35 @@ from authentication.models import User, UserFollows
 from reviews.models import Ticket, Review
 from reviews.forms import TicketForm, ReviewForm, TicketAndReviewForm
 
+from django.db.models import Q
+
+
+@login_required
+def home(request):
+    tickets = Ticket.objects.all()
+    reviews = Review.objects.all()
+
+    user_follows_list = UserFollows.objects.filter(user=request.user)
+    users_followed = [user_follows.followed_user for user_follows in user_follows_list]
+
+    tickets = tickets.filter(Q(user=request.user) | Q(user__in=users_followed))
+    reviews = reviews.filter(Q(user=request.user) | Q(ticket__user=request.user))
+
+    for ticket in tickets:
+        ticket.type = 'ticket'
+
+    for review in reviews:
+        review.type = 'review'
+
+    items = [*tickets, *reviews]
+    items.sort(key=lambda x: x.time_created, reverse=True)
+
+    return render(
+        request,
+        'authentication/home.html',
+        context={'items': items}
+    )
+
 
 @login_required
 def my_posts(request):
@@ -35,10 +64,8 @@ def my_posts(request):
 @login_required
 def subscriptions(request):
     if request.method == 'POST':
-        print(request.POST)
 
         if request.POST.get('action') == 'subscribe':
-            print("Subscribe action")
 
             subscribe_form = SubscribeForm(request.POST)
             unsubscribe_form = UnsubscribeForm()
@@ -63,7 +90,6 @@ def subscriptions(request):
                     subscribe_form.add_error('followed_user', "Vous ne pouvez pas vous abonner à vous-même.")
 
         elif request.POST.get('action') == 'unsubscribe':
-            print("Unsubscribe action")
 
             subscribe_form = SubscribeForm()
             unsubscribe_form = UnsubscribeForm(request.POST)
@@ -201,12 +227,9 @@ def review_delete(request, review_id):
 @login_required
 def create_ticket_and_review(request):
     if request.method == 'POST':
-        print("POST request received")
-        print(request.POST)
         form = TicketAndReviewForm(request.POST, request.FILES)
 
         if form.is_valid():
-            print("Form is valid")
             ticket, review = form.save(user=request.user)
             return redirect('my-posts')
     else:
