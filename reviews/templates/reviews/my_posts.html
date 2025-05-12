@@ -29,9 +29,9 @@
                         <div class="review-stars">
                             {% for i in "12345" %}
                                 {% if forloop.counter <= item.rating %}
-                                    <img src="{% static 'images/full_star.png' %}" alt="★" class="star-icon">
+                                    <img src="{% static 'images/full_star.png' %}" alt="Full star icon" class="star-icon">
                                 {% else %}
-                                    <img src="{% static 'images/empty_star.png' %}" alt="☆" class="star-icon">
+                                    <img src="{% static 'images/empty_star.png' %}" alt="Empty star icon" class="star-icon">
                                 {% endif %}
                             {% endfor %}
                         </div>
