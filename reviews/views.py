@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from authentication.forms import SubscribeForm, UnsubscribeForm
@@ -96,7 +96,7 @@ def subscriptions(request):
 
             if unsubscribe_form.is_valid():
                 unfollowed_user_id = unsubscribe_form.cleaned_data['unfollow_user_id']
-                unfollowed_user = User.objects.get(id=unfollowed_user_id)
+                unfollowed_user = get_object_or_404(User, id=unfollowed_user_id)
                 user_follows = UserFollows.objects.filter(user=request.user, followed_user=unfollowed_user)
                 user_follows.delete()
 
@@ -138,7 +138,7 @@ def ticket_create(request):
 
 @login_required
 def ticket_edit(request, ticket_id):
-    ticket = Ticket.objects.get(id=ticket_id)
+    ticket = ticket = get_object_or_404(Ticket, id=ticket_id)
 
     if request.user != ticket.user:
         return redirect('home')
@@ -157,7 +157,7 @@ def ticket_edit(request, ticket_id):
 
 @login_required
 def ticket_delete(request, ticket_id):
-    ticket = Ticket.objects.get(id=ticket_id)
+    ticket = get_object_or_404(Ticket, id=ticket_id)
 
     if request.user != ticket.user:
         return redirect('home')
@@ -171,7 +171,7 @@ def ticket_delete(request, ticket_id):
 
 @login_required
 def review_create(request, ticket_id):
-    ticket = Ticket.objects.get(id=ticket_id)
+    ticket = get_object_or_404(Ticket, id=ticket_id)
 
     if ticket.answered:
         return redirect('home')
@@ -192,8 +192,8 @@ def review_create(request, ticket_id):
 
 @login_required
 def review_edit(request, review_id):
-    review = Review.objects.get(id=review_id)
-    ticket = Ticket.objects.get(id=review.ticket.id)
+    review = get_object_or_404(Review, id=review_id)
+    ticket = get_object_or_404(Ticket, id=review.ticket.id)
 
     if request.user != review.user:
         return redirect('my-posts')
@@ -212,7 +212,7 @@ def review_edit(request, review_id):
 
 @login_required
 def review_delete(request, review_id):
-    review = Review.objects.get(id=review_id)
+    review = get_object_or_404(Review, id=review_id)
 
     if request.user != review.user:
         return redirect('my-posts')
